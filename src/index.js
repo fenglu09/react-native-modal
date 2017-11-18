@@ -5,6 +5,7 @@ import {
   DeviceEventEmitter,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
+  Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
 import {
@@ -211,7 +212,7 @@ export class ReactNativeModal extends Component {
     const { deviceWidth, deviceHeight } = this.state;
 
     const computedStyle = [
-      { margin: deviceWidth * 0.05, transform: [{ translateY: 0 }] },
+      { transform: [{ translateY: 0 }] },
       styles.content,
       style,
     ];
@@ -253,7 +254,7 @@ export class ReactNativeModal extends Component {
 
         {avoidKeyboard && (
           <KeyboardAvoidingView
-            behavior={'padding'}
+            behavior={Platform.OS === 'ios' ? 'padding': null}
             pointerEvents={'box-none'}
             style={computedStyle.concat([{ margin: 0 }])}
           >
