@@ -49,6 +49,7 @@ export class ReactNativeModal extends Component {
     onBackdropPress: PropTypes.func,
     useNativeDriver: PropTypes.bool,
     style: PropTypes.any,
+    transparent: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -67,6 +68,7 @@ export class ReactNativeModal extends Component {
     onBackdropPress: () => null,
     onBackButtonPress: () => null,
     useNativeDriver: false,
+    transparent: true,
   };
 
   // We use an internal state for keeping track of the modal visibility: this allows us to keep
@@ -207,6 +209,7 @@ export class ReactNativeModal extends Component {
       onBackButtonPress,
       useNativeDriver,
       style,
+      transparent,
       ...otherProps
     } = this.props;
     const { deviceWidth, deviceHeight } = this.state;
@@ -231,7 +234,7 @@ export class ReactNativeModal extends Component {
 
     return (
       <Modal
-        transparent={true}
+        transparent={transparent}
         animationType={'none'}
         visible={this.state.isVisible}
         onRequestClose={onBackButtonPress}
